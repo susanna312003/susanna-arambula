@@ -81,3 +81,55 @@
 
 </body>
 </html>
+
+/* ---- MESSY STACK OF PAPERS ---- */
+
+.stack {
+  position: relative;
+  width: 100%;
+  height: 250px;
+}
+
+.stack img {
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  border: 2px solid white;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, z-index 0.2s ease;
+}
+
+/* scattered look */
+.stack img:nth-child(1) {
+  transform: rotate(-4deg);
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+.stack img:nth-child(2) {
+  transform: rotate(3deg);
+  top: 8px;
+  left: -6px;
+  z-index: 2;
+}
+.stack img:nth-child(3) {
+  transform: rotate(-2deg);
+  top: 15px;
+  left: 4px;
+  z-index: 3;
+}
+.stack img:nth-child(4) {
+  transform: rotate(5deg);
+  top: -6px;
+  left: 6px;
+  z-index: 0;
+}
+
+/* Hover: rise to top + straighten + enlarge slightly */
+.stack img:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 99 !important;
+}
+
