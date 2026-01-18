@@ -28,4 +28,155 @@
         linear-gradient(25deg, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0.02) 100%),
         linear-gradient(-15deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.03) 100%),
 
-        radial-gradient(circ
+        radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%),
+
+        /* vertical gradient using random colors */
+        linear-gradient(
+          to bottom,
+          var(--c1) 0%,
+          var(--c2) 50%,
+          var(--c3) 100%
+        );
+
+      background-blend-mode: overlay, overlay, overlay, overlay,
+                             soft-light, soft-light,
+                             multiply, normal;
+
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    .section {
+      text-align: center;
+      width: 250px;
+      text-decoration: none;
+      color: #fcfaf6;
+    }
+
+    .section img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25));
+      transition: transform 0.2s;
+    }
+
+    .section h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* STACK OF PAPERS */
+    .stack {
+      position: relative;
+      width: 100%;
+      height: 250px;
+    }
+
+    .stack img {
+      position: absolute;
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      border: none;
+      border-radius: 0px;
+      box-shadow: none;
+      transition: transform 0.25s ease, z-index 0.2s ease;
+    }
+
+    .stack img:nth-child(1) {
+      transform: rotate(-4deg);
+      top: 0px;
+      left: 0px;
+      z-index: 1;
+    }
+    .stack img:nth-child(2) {
+      transform: rotate(3deg);
+      top: 8px;
+      left: -6px;
+      z-index: 2;
+    }
+    .stack img:nth-child(3) {
+      transform: rotate(-2deg);
+      top: 15px;
+      left: 4px;
+      z-index: 3;
+    }
+    .stack img:nth-child(4) {
+      transform: rotate(5deg);
+      top: -6px;
+      left: 6px;
+      z-index: 0;
+    }
+
+    .stack img:hover {
+      transform: rotate(0deg) scale(1.05);
+      z-index: 99 !important;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>susanna arambula</h1>
+  <p>a digital window to the inside of my mind</p>
+</header>
+
+<section class="sections">
+  <a href="sketches.html" class="section">
+    <div class="stack">
+      <img src="images/sketch1.jpg" alt="">
+      <img src="images/sketch2.jpg" alt="">
+      <img src="images/sketch3.png" alt="">
+    </div>
+    <h2>sketches & doodles</h2>
+  </a>
+
+  <a href="photography.html" class="section">
+    <img src="images/digital smaller.jpg" alt="photographic experiments">
+    <h2>photographic experiments</h2>
+  </a>
+
+  <a href="digital.html" class="section">
+    <img src="images/digital.jpg" alt="Digital Art">
+    <h2>digital paintings and drawings</h2>
+  </a>
+</section>
+
+<script>
+/* RANDOM PAPER POPUP */
+window.addEventListener("DOMContentLoaded", () => {
+  const stack = document.querySelector(".stack");
+  const papers = Array.from(stack.children);
+
+  const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+  randomPaper.style.zIndex = 999;
+});
+
+/* RANDOM COLOR GENERATOR FOR BACKGROUND */
+function randomColor(h, s = 35, l = 45) {
+  return `hsl(${h}, ${s}%, ${l}%)`;
+}
+
+const hue = Math.floor(Math.random() * 360);
+
+document.documentElement.style.setProperty('--c1', randomColor(hue, 35, 40));
+document.documentElement.style.setProperty('--c2', randomColor(hue, 40, 50));
+document.documentElement.style.setProperty('--c3', randomColor(hue, 45, 30));
+</script>
+
+</body>
+</html>
