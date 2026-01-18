@@ -115,6 +115,22 @@
   transform: rotate(0deg) scale(1.05);
   z-index: 99 !important;
 }
+/* When a stack is expanded */
+.stack.expanded {
+  height: auto; /* allow vertical growth */
+  padding-top: 10px;
+}
+
+.stack.expanded img {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  transform: none !important;
+  z-index: auto !important;
+}
+
   </style>
 </head>
 
@@ -180,6 +196,14 @@ window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
   document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
 });
+  document.querySelectorAll(".stack").forEach(stack => {
+  stack.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    stack.classList.toggle("expanded");
+  });
+});
+
 </script>
 
 </body>
