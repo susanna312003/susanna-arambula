@@ -193,6 +193,29 @@ document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
 document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
 document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
 
+/* RANDOM FONT PER LETTER OF TITLE */
+window.addEventListener("DOMContentLoaded", () => {
+  const title = document.querySelector("header h1");
+  const text = title.textContent;
+
+  const fonts = [
+    "Times New Roman",
+    "Courier New",
+    "Brush Script MT",
+    "Arial",
+    "Comic Sans MS"
+  ];
+
+  title.innerHTML = text
+    .split("")
+    .map(letter => {
+      const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+      const safe = letter === " " ? "&nbsp;" : letter;
+      return `<span style="font-family: ${randomFont}; display:inline-block;">${safe}</span>`;
+    })
+    .join("");
+});
+
 </script>
 
 </body>
