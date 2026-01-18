@@ -2,29 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sketches – Susanna Arambula</title>
+  <title>sketches</title>
   <style>
     body {
-      background: #DEDBD8;
-      color: #524632;
+      margin: 0;
       font-family: Arial, sans-serif;
-      margin: 20px;
+      background: #E4FDE1; /* new background */
+      color: #028090;      /* new text color */
     }
-    img {
-      max-width: 100%;
-      display: block;
-      margin-bottom: 20px;
-      border-radius: 6px;
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    .section {
+      text-align: center;
+      width: 250px;
+      text-decoration: none;
+      color: #028090; /* link text matches your color */
+    }
+
+    .section img {
+  width: 100%;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* shadow added */
+  transition: transform 0.2s; /* optional: smooth hover effect */
+}
+
+    .section h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
 
-<h1>Sketches</h1>
+<header>
+  <h1>sketches</h1>
+</header>
 
-<img src="images/placeholder.jpg" alt="Placeholder">
-<img src="images/placeholder.jpg" alt="Placeholder">
+<section class="sections">
+  <a href="sketch1.html" class="section">
+    <img src="images/placeholder.jpg" alt="Sketches">
+    <h2>sketch 1</h2>
+  </a>
 
+  <a href="sketch2.html" class="section">
+    <img src="images/placeholder.jpg" alt="Photography">
+    <h2>sketch 2</h2>
+  </a>
+
+  <a href="sketch3.html" class="section">
+    <img src="images/placeholder.jpg" alt="Digital Art">
+    <h2>sketch 3</h2>
+  </a>
+
+
+</section>
 
 </body>
 </html>
