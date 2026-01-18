@@ -159,6 +159,15 @@ h1, h2, p {
   </a>
 
 </section>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const stack = document.querySelector(".stack");
+  const papers = Array.from(stack.children);
+
+  const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+  randomPaper.style.zIndex = 999;
+});
+</script>
 
 </body>
 </html>
