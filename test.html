@@ -20,27 +20,32 @@
       background-color: var(--c1);
 
       background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 70%),
-        radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06), transparent 70%),
-        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04), transparent 70%),
-        radial-gradient(circle at 70% 20%, rgba(0,0,0,0.05), transparent 70%),
+  /* move the 3-color gradient first */
+  linear-gradient(to bottom, var(--c1), var(--c2), var(--c3)),
 
-        linear-gradient(25deg, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0.02) 100%),
-        linear-gradient(-15deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.03) 100%),
+  /* all the extra noise layers after */
+  radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 70%),
+  radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06), transparent 70%),
+  radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04), transparent 70%),
+  radial-gradient(circle at 70% 20%, rgba(0,0,0,0.05), transparent 70%),
 
-        radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%),
+  linear-gradient(25deg, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0.02) 100%),
+  linear-gradient(-15deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.03) 100%),
 
-        /* vertical gradient using random colors */
-        linear-gradient(
-          to bottom,
-          var(--c1) 0%,
-          var(--c2) 50%,
-          var(--c3) 100%
+  radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%);
+
         );
 
-      background-blend-mode: overlay, overlay, overlay, overlay,
-                             soft-light, soft-light,
-                             multiply, normal;
+      background-blend-mode:
+  normal,           /* <-- gradient stays unblended */
+  overlay,
+  overlay,
+  overlay,
+  overlay,
+  soft-light,
+  soft-light,
+  multiply;
+
 
       background-attachment: fixed;
       background-size: cover;
