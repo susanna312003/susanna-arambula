@@ -7,8 +7,23 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #E4FDE1; /* new background */
       color: #028090;      /* new text color */
+      background-color: #f7f5f0; /* warm paper base */
+  background-image:
+    /* subtle vertical fibers */
+    linear-gradient(rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.03) 100%),
+    /* horizontal texture */
+    linear-gradient(90deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.05) 100%),
+    /* fine noise */
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.015),
+      rgba(0,0,0,0.015) 1px,
+      rgba(255,255,255,0.015) 1px,
+      rgba(255,255,255,0.015) 2px
+    );
+
+  background-blend-mode: multiply;
     }
 
     header {
