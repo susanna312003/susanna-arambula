@@ -204,32 +204,66 @@ window.addEventListener("DOMContentLoaded", () => {
     return `<span style="font-family:${f}">${letter === " " ? "&nbsp;" : letter}</span>`;
   }).join("");
 
-  /* STACK CENTERING */
-  const stacks = document.querySelectorAll(".section .stack");
+/* ============ STACK SLIDE-TO-CENTER ON HOVER ============ */
 
-  stacks.forEach(stack => {
-    const section = stack.closest(".section");
+const stacks = document.querySelectorAll(".section .stack");
 
-    stack.addEventListener("mouseenter", () => {
-      section.classList.add("active-stack");
+stacks.forEach(stack => {
+  const section = stack.closest(".section");
 
-      document.querySelectorAll(".section").forEach(sec => {
-        if (sec !== section) sec.classList.add("dimmed");
-      });
+  let original = { x: 0, y: 0 };
 
-      stack.classList.add("centered");
+  stack.addEventListener("mouseenter", () => {
+    const rect = stack.getBoundingClientRect();
+
+    // Save original position so we can animate back
+    original.x = rect.left;
+    original.y = rect.top;
+
+    const centerX = window.innerWidth / 2 - rect.width / 2;
+    const centerY = window.innerHeight / 2 - rect.height / 2;
+
+    // Dim the other stacks
+    document.querySelectorAll(".section").forEach(sec => {
+      if (sec !== section) sec.classList.add("dimmed");
     });
 
-    /* Fix: mouseleave was not firing because pointer-events:none was applied too early */
-    section.addEventListener("mouseleave", () => {
-      section.classList.remove("active-stack");
-      stack.classList.remove("centered");
+    stack.style.position = "fixed";
+    stack.style.left = `${rect.left}px`;
+    stack.style.top = `${rect.top}px`;
+    stack.style.transition = "transform 0.6s ease, left 0.6s ease, top 0.6s ease";
 
-      document.querySelectorAll(".section").forEach(sec => {
-        sec.classList.remove("dimmed");
-      });
+    // Force reflow so transition starts
+    stack.getBoundingClientRect();
+
+    // Animate to center
+    stack.style.left = `${centerX}px`;
+    stack.style.top = `${centerY}px`;
+    stack.style.transform = "scale(1.35)";
+    stack.style.zIndex = 9999;
+  });
+
+  stack.addEventListener("mouseleave", () => {
+
+    // Move back to original spot
+    stack.style.left = `${original.x}px`;
+    stack.style.top = `${original.y}px`;
+    stack.style.transform = "scale(1)";
+
+    // After animation, restore normal layout
+    setTimeout(() => {
+      stack.style.position = "";
+      stack.style.left = "";
+      stack.style.top = "";
+      stack.style.transform = "";
+      stack.style.zIndex = "";
+    }, 600);
+
+    document.querySelectorAll(".section").forEach(sec => {
+      sec.classList.remove("dimmed");
     });
   });
+});
 
 });
 </script>
