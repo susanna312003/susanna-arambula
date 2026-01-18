@@ -13,28 +13,26 @@ h1, h2, p {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
 }
 
-  background-color: #6d7a3f;
+  /* MAIN BASE COLOR */
+  background-color: var(--c1);
 
   background-image:
-    /* fuzzy speckle layer */
     radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 70%),
     radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06), transparent 70%),
     radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04), transparent 70%),
     radial-gradient(circle at 70% 20%, rgba(0,0,0,0.05), transparent 70%),
 
-    /* scratchy diagonal noise (not lines, more like smudges) */
     linear-gradient(25deg, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0.02) 100%),
     linear-gradient(-15deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.03) 100%),
 
-    /* vignette */
     radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%),
 
-    /* vertical warm gradient */
+    /* vertical gradient uses 3 color vars */
     linear-gradient(
       to bottom,
-      #728b6a 0%,
-      #a58c57 50%,
-      #6c4c30 100%
+      var(--c1) 0%,
+      var(--c2) 50%,
+      var(--c3) 100%
     );
 
   background-blend-mode: overlay, overlay, overlay, overlay,
@@ -167,6 +165,15 @@ window.addEventListener("DOMContentLoaded", () => {
   const randomPaper = papers[Math.floor(Math.random() * papers.length)];
   randomPaper.style.zIndex = 999;
 });
+  function randomColor(h, s = 35, l = 45) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  const hue = Math.floor(Math.random() * 360);
+
+  document.documentElement.style.setProperty('--c1', randomColor(hue, 35, 40));
+  document.documentElement.style.setProperty('--c2', randomColor(hue, 40, 50));
+  document.documentElement.style.setProperty('--c3', randomColor(hue, 45, 30));
 </script>
 
 </body>
