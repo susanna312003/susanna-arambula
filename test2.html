@@ -27,4 +27,146 @@
         linear-gradient(25deg, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0.02) 100%),
         linear-gradient(-15deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.03) 100%),
         radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%);
-      background-blend-mode: normal, overlay, overlay, overl
+      background-blend-mode: normal, overlay, overlay, overlay, overlay, soft-light, soft-light, multiply;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 100px;
+      padding: 40px;
+    }
+
+    .section {
+      text-align: center;
+      width: 250px;
+      cursor: pointer;
+      color: #fcfaf6;
+      text-decoration: none;
+    }
+
+    /* Description ABOVE images */
+    .section p.label {
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+
+    /* STACK OF PAPERS (collapsible) */
+    .stack {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      transition: height 0.5s ease;
+      overflow: hidden;
+    }
+
+    .stack.open {
+      height: 800px; /* enough to show images spaced vertically */
+    }
+
+    .stack img {
+      position: absolute;
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      transition: transform 0.25s ease, top 0.5s ease, z-index 0.2s ease;
+    }
+
+    /* collapsed positions */
+    .stack img:nth-child(1) { transform: rotate(-4deg); top: 0px; left: 0px; z-index: 1;}
+    .stack img:nth-child(2) { transform: rotate(3deg); top: 8px; left: -6px; z-index: 2;}
+    .stack img:nth-child(3) { transform: rotate(-2deg); top: 15px; left: 4px; z-index: 3;}
+    .stack img:nth-child(4) { transform: rotate(5deg); top: -6px; left: 6px; z-index: 0;}
+
+    /* expanded (spread vertically) */
+    .stack.open img:nth-child(1) { top: 0px; transform: rotate(0deg); }
+    .stack.open img:nth-child(2) { top: 270px; transform: rotate(0deg); }
+    .stack.open img:nth-child(3) { top: 540px; transform: rotate(0deg); }
+    .stack.open img:nth-child(4) { top: 810px; transform: rotate(0deg); }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>susanna arambula</h1>
+  <p>a digital window to the inside of my mind</p>
+</header>
+
+<section class="sections">
+
+  <a class="section">
+    <p class="label">sketches & doodles</p>
+    <div class="stack">
+      <img src="images/sketch1.jpg">
+      <img src="images/sketch2.jpg">
+      <img src="images/sketch3.png">
+    </div>
+  </a>
+
+  <a class="section">
+    <p class="label">photographic experiments</p>
+    <div class="stack">
+      <img src="images/photoexp.jpg">
+      <img src="images/digital smaller.jpg">
+      <img src="images/photoexp3.jpg">
+    </div>
+  </a>
+
+  <a class="section">
+    <p class="label">digital paintings and drawings</p>
+    <div class="stack">
+      <img src="images/digitalpainting.jpg">
+      <img src="images/digital2.jpg">
+      <img src="images/digital.jpg">
+    </div>
+  </a>
+
+</section>
+
+<script>
+/* RANDOM ORDER OF SECTIONS */
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".sections");
+  const sections = Array.from(container.children);
+
+  sections.sort(() => Math.random() - 0.5);
+
+  sections.forEach(section => container.appendChild(section));
+});
+
+/* CLICK TO EXPAND STACKS */
+document.querySelectorAll(".section").forEach(section => {
+  section.addEventListener("click", e => {
+    e.preventDefault();
+    const stack = section.querySelector(".stack");
+    stack.classList.toggle("open");
+  });
+});
+
+/* RANDOM COLOR BACKGROUND */
+function randomColor(h, s = 35, l = 45) {
+  return `hsl(${h}, ${s}%, ${l}%)`;
+}
+
+const hue1 = Math.floor(Math.random() * 360);
+const hue2 = (hue1 + 40 + Math.random()*40) % 360;
+const hue3 = (hue1 + 140 + Math.random()*60) % 360;
+
+document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
+document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
+document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
+
+</script>
+
+</body>
+</html>
+
