@@ -115,15 +115,30 @@
   opacity: 0.25; /* fade others back */
 }
 
-/* REMOVE the existing .stack img:hover rules and replace with these */
+.stack img:hover {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  transform: rotate(0deg) scale(1.1) !important;
+  z-index: 999 !important;
+  opacity: 1 !important;
+}
 
-.stack img.selected {
+.stack img:nth-child(1) { transform: rotate(-7deg); top: 0; left: 0; z-index: 1; }
+.stack img:nth-child(2) { transform: rotate(9deg); top: 35px; left: -25px; z-index: 2; }
+.stack img:nth-child(3) { transform: rotate(-6deg); top: 65px; left: 18px; z-index: 3; }
+
+
+    .stack img:hover {
+      transform: rotate(0deg) scale(1.05);
+      z-index: 99 !important;
+    }
+    .stack img:hover {
   top: 0 !important;
   left: 0 !important;
   transform: rotate(0deg) scale(1.05);
   z-index: 99 !important;
 }
-
 /* When a stack is expanded */
 .stack.expanded {
   height: auto; /* allow vertical growth */
@@ -204,85 +219,16 @@ window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
   document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
   document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
-
 });
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-
-  /* RANDOM PAPER POPUP */
   document.querySelectorAll(".stack").forEach(stack => {
-    const papers = [...stack.children];
-    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
-    papers.forEach((p, i) => p.style.zIndex = i + 1);
-    randomPaper.style.zIndex = 50;
-  });
-
-  /* RANDOM BACKGROUND COLORS */
-  function randomColor(h, s = 35, l = 45) {
-    return `hsl(${h}, ${s}%, ${l}%)`;
-  }
-
-  const hue1 = Math.floor(Math.random() * 360);
-  const hue2 = (hue1 + 40 + Math.random() * 40) % 360;
-  const hue3 = (hue1 + 140 + Math.random() * 60) % 360;
-
-  document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
-  document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
-  document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
-
-});
-<script>
-window.addEventListener("DOMContentLoaded", () => {
-
-  /* RANDOM PAPER POPUP */
-  document.querySelectorAll(".stack").forEach(stack => {
-    const papers = [...stack.children];
-    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
-    papers.forEach((p, i) => p.style.zIndex = i + 1);
-    randomPaper.style.zIndex = 50;
-  });
-
-  /* RANDOM BACKGROUND COLORS */
-  function randomColor(h, s = 35, l = 45) {
-    return `hsl(${h}, ${s}%, ${l}%)`;
-  }
-
-  const hue1 = Math.floor(Math.random() * 360);
-  const hue2 = (hue1 + 40 + Math.random() * 40) % 360;
-  const hue3 = (hue1 + 140 + Math.random() * 60) % 360;
-
-  document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
-  document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
-  document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
-
-});
-</script>
-
-<script>
-/* CLICK TO EXPAND */
-document.querySelectorAll(".stack").forEach(stack => {
   stack.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     stack.classList.toggle("expanded");
   });
 });
+
 </script>
-
-<script>
-/* HOVER SELECT SINGLE IMAGE */
-document.querySelectorAll(".stack").forEach(stack => {
-  const imgs = stack.querySelectorAll("img");
-
-  imgs.forEach(img => {
-    img.addEventListener("mouseenter", () => {
-      imgs.forEach(i => i.classList.remove("selected"));
-      img.classList.add("selected");
-    });
-  });
-});
-</script>
-
 
 </body>
 </html>
