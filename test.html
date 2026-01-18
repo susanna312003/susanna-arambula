@@ -22,7 +22,7 @@
       overflow-x: hidden;
     }
 
-    /* FILM TEXTURE OVERLAY – faster than loading inside body */
+    /* FILM TEXTURE OVERLAY */
     body::before {
       content: "";
       position: fixed;
@@ -31,15 +31,10 @@
       z-index: -1;
 
       background-image:
-        /* dust speckles */
         radial-gradient(circle, rgba(255,255,255,0.035) 0%, transparent 55%),
         radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 60%),
-
-        /* blotches */
         radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 70%),
         radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06), transparent 70%),
-
-        /* vertical scratches */
         repeating-linear-gradient(
           90deg,
           rgba(255,255,255,0.05) 0px,
@@ -47,8 +42,6 @@
           transparent 1px,
           transparent 6px
         ),
-
-        /* fine horizontal noise */
         repeating-linear-gradient(
           180deg,
           rgba(255,255,255,0.02) 0px,
@@ -56,10 +49,7 @@
           transparent 1px,
           transparent 12px
         ),
-
-        /* vignette */
         radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.32) 100%);
-
       background-blend-mode: overlay, overlay, overlay, overlay, soft-light, multiply, multiply;
       background-size: cover;
     }
@@ -86,6 +76,8 @@
       width: 250px;
       text-decoration: none;
       color: #fcfaf6;
+      position: relative;
+      transition: opacity 0.3s ease;
     }
 
     .section img {
@@ -101,11 +93,13 @@
       font-size: 1.2rem;
     }
 
-    /* STACK OF PAPERS */
+    /* STACK */
     .stack {
       position: relative;
       width: 100%;
       height: 250px;
+      transition: transform 0.45s ease, left 0.45s ease, top 0.45s ease;
+      transform-origin: center center;
     }
 
     .stack img {
@@ -125,6 +119,22 @@
       transform: rotate(0deg) scale(1.05);
       z-index: 99 !important;
     }
+
+    /* ============ CENTER ON HOVER ============ */
+
+    .stack.centered {
+      position: fixed !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(1.3) !important;
+      z-index: 9999 !important;
+      pointer-events: none;
+    }
+
+    .section.dimmed {
+      opacity: 0.25;
+    }
+
   </style>
 </head>
 
@@ -190,7 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
   document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
 
-  /* LIGHT-WEIGHT RANDOM FONTS PER LETTER */
+  /* RANDOM FONTS FOR TITLE */
   const title = document.getElementById("title");
   const text = title.textContent;
   const fonts = [
@@ -205,6 +215,33 @@ window.addEventListener("DOMContentLoaded", () => {
     const f = fonts[(Math.random() * fonts.length) | 0];
     return `<span style="font-family:${f}">${letter === " " ? "&nbsp;" : letter}</span>`;
   }).join("");
+
+  /* ============ STACK CENTERING ON HOVER ============ */
+  const stacks = document.querySelectorAll(".section .stack");
+
+  stacks.forEach(stack => {
+    const section = stack.closest(".section");
+
+    stack.addEventListener("mouseenter", () => {
+      section.classList.add("active-stack");
+
+      document.querySelectorAll(".section").forEach(sec => {
+        if (sec !== section) sec.classList.add("dimmed");
+      });
+
+      stack.classList.add("centered");
+    });
+
+    stack.addEventListener("mouseleave", () => {
+      section.classList.remove("active-stack");
+
+      document.querySelectorAll(".section").forEach(sec => {
+        sec.classList.remove("dimmed");
+      });
+
+      stack.classList.remove("centered");
+    });
+  });
 
 });
 </script>
