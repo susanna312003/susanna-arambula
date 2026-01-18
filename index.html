@@ -83,22 +83,46 @@
       transition: transform 0.2s;
     }
 
-    /* STACK */
-    .stack {
-      position: relative;
-      width: 100%;
-      height: 250px;
-      transition: transform 0.45s ease;
-      transform-origin: center center;
-    }
+    /* STACK ===================================================== */
+.stack {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  transition: transform 0.45s ease;
+  transform-origin: center center;
+}
 
-    .stack img {
-      position: absolute;
-      width: 100%;
-      height: 250px;
-      object-fit: contain;
-      transition: transform 0.25s ease, z-index 0.2s ease;
-    }
+/* All images stay in their natural messy-stack layout */
+.stack img {
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  transition: 
+    transform 0.25s ease,
+    opacity 0.2s ease,
+    z-index 0s; /* no fade delay */
+  pointer-events: auto;
+}
+
+/* Maintain your offsets */
+.stack img:nth-child(1) { transform: rotate(-7deg);   top: 0;  left: 0;   z-index: 1; }
+.stack img:nth-child(2) { transform: rotate(9deg);    top: 35px; left: -25px; z-index: 2; }
+.stack img:nth-child(3) { transform: rotate(-6deg);   top: 65px; left: 18px; z-index: 3; }
+
+/* PERFECT HOVER LOCK ======================================== */
+.stack:hover img {
+  opacity: 0.25; /* fade others back */
+}
+
+.stack img:hover {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  transform: rotate(0deg) scale(1.1) !important;
+  z-index: 999 !important;
+  opacity: 1 !important;
+}
 
 .stack img:nth-child(1) { transform: rotate(-7deg); top: 0; left: 0; z-index: 1; }
 .stack img:nth-child(2) { transform: rotate(9deg); top: 35px; left: -25px; z-index: 2; }
