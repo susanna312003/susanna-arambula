@@ -42,4 +42,172 @@
         /* vertical scratches */
         repeating-linear-gradient(
           90deg,
-          rgba(255,255,255,
+          rgba(255,255,255,0.05) 0px,
+          rgba(255,255,255,0.05) 1px,
+          transparent 1px,
+          transparent 6px
+        ),
+
+        /* fine horizontal noise */
+        repeating-linear-gradient(
+          180deg,
+          rgba(255,255,255,0.02) 0px,
+          rgba(255,255,255,0.02) 1px,
+          transparent 1px,
+          transparent 12px
+        ),
+
+        /* vignette */
+        radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.32) 100%);
+
+      background-blend-mode: overlay, overlay, overlay, overlay, soft-light, multiply, multiply;
+      background-size: cover;
+    }
+
+    h1, h2, p {
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 100px;
+      padding: 40px;
+    }
+
+    .section {
+      text-align: center;
+      width: 250px;
+      text-decoration: none;
+      color: #fcfaf6;
+    }
+
+    .section img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25));
+      transition: transform 0.2s;
+    }
+
+    .section h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    /* STACK OF PAPERS */
+    .stack {
+      position: relative;
+      width: 100%;
+      height: 250px;
+    }
+
+    .stack img {
+      position: absolute;
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      transition: transform 0.25s ease, z-index 0.2s ease;
+    }
+
+    .stack img:nth-child(1) { transform: rotate(-4deg); top: 0; left: 0; z-index: 1; }
+    .stack img:nth-child(2) { transform: rotate(3deg); top: 8px; left: -6px; z-index: 2; }
+    .stack img:nth-child(3) { transform: rotate(-2deg); top: 15px; left: 4px; z-index: 3; }
+    .stack img:nth-child(4) { transform: rotate(5deg); top: -6px; left: 6px; z-index: 0; }
+
+    .stack img:hover {
+      transform: rotate(0deg) scale(1.05);
+      z-index: 99 !important;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1 id="title">susanna arambula</h1>
+  <p>a digital window to the inside of my mind</p>
+</header>
+
+<section class="sections">
+
+  <a href="sketches.html" class="section">
+    <div class="stack">
+      <img src="images/tinysketch1.jpg" loading="lazy">
+      <img src="images/tinysketch2.png" loading="lazy">
+      <img src="images/tinysketch3.jpg" loading="lazy">
+    </div>
+    <p>sketches & doodles</p>
+  </a>
+
+  <a href="photography.html" class="section">
+    <div class="stack">
+      <img src="images/tinyphotoexp1.jpg" loading="lazy">
+      <img src="images/tinyphotoexp2.jpg" loading="lazy">
+      <img src="images/tinyphotoexp3.jpg" loading="lazy">
+    </div>
+    <p>photographic experiments</p>
+  </a>
+
+  <a href="digital.html" class="section">
+    <div class="stack">
+      <img src="images/digitalpainting.jpg" loading="lazy">
+      <img src="images/digital2.jpg" loading="lazy">
+      <img src="images/digital.jpg" loading="lazy">
+    </div>
+    <p>digital paintings and drawings</p>
+  </a>
+
+</section>
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  /* RANDOM PAPER POPUP */
+  document.querySelectorAll(".stack").forEach(stack => {
+    const papers = Array.from(stack.children);
+    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+    papers.forEach((p, i) => p.style.zIndex = i + 1);
+    randomPaper.style.zIndex = 999;
+  });
+
+  /* RANDOM BACKGROUND COLORS */
+  function randomColor(h, s = 35, l = 45) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  const hue1 = Math.floor(Math.random() * 360);
+  const hue2 = (hue1 + 40 + Math.random()*40) % 360;
+  const hue3 = (hue1 + 140 + Math.random()*60) % 360;
+
+  document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
+  document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
+  document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
+
+  /* LIGHT-WEIGHT RANDOM FONTS PER LETTER */
+  const title = document.getElementById("title");
+  const text = title.textContent;
+  const fonts = [
+    "Times New Roman",
+    "Courier New",
+    "Brush Script MT",
+    "Arial",
+    "Comic Sans MS"
+  ];
+
+  title.innerHTML = [...text].map(letter => {
+    const f = fonts[(Math.random() * fonts.length) | 0];
+    return `<span style="font-family:${f}">${letter === " " ? "&nbsp;" : letter}</span>`;
+  }).join("");
+
+});
+</script>
+
+</body>
+</html>
