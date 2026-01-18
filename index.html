@@ -204,31 +204,85 @@ window.addEventListener("DOMContentLoaded", () => {
   document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
   document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
   document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
+
 });
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  /* RANDOM PAPER POPUP */
   document.querySelectorAll(".stack").forEach(stack => {
+    const papers = [...stack.children];
+    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+    papers.forEach((p, i) => p.style.zIndex = i + 1);
+    randomPaper.style.zIndex = 50;
+  });
+
+  /* RANDOM BACKGROUND COLORS */
+  function randomColor(h, s = 35, l = 45) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  const hue1 = Math.floor(Math.random() * 360);
+  const hue2 = (hue1 + 40 + Math.random() * 40) % 360;
+  const hue3 = (hue1 + 140 + Math.random() * 60) % 360;
+
+  document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
+  document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
+  document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
+
+});
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+  /* RANDOM PAPER POPUP */
+  document.querySelectorAll(".stack").forEach(stack => {
+    const papers = [...stack.children];
+    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+    papers.forEach((p, i) => p.style.zIndex = i + 1);
+    randomPaper.style.zIndex = 50;
+  });
+
+  /* RANDOM BACKGROUND COLORS */
+  function randomColor(h, s = 35, l = 45) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  const hue1 = Math.floor(Math.random() * 360);
+  const hue2 = (hue1 + 40 + Math.random() * 40) % 360;
+  const hue3 = (hue1 + 140 + Math.random() * 60) % 360;
+
+  document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
+  document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
+  document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
+
+});
+</script>
+
+<script>
+/* CLICK TO EXPAND */
+document.querySelectorAll(".stack").forEach(stack => {
   stack.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     stack.classList.toggle("expanded");
   });
 });
+</script>
+
 <script>
+/* HOVER SELECT SINGLE IMAGE */
 document.querySelectorAll(".stack").forEach(stack => {
   const imgs = stack.querySelectorAll("img");
 
   imgs.forEach(img => {
     img.addEventListener("mouseenter", () => {
-      // Remove "selected" from all images in this stack
       imgs.forEach(i => i.classList.remove("selected"));
-
-      // Add "selected" to hovered one
       img.classList.add("selected");
     });
   });
 });
 </script>
 
-</script>
 
 </body>
 </html>
