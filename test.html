@@ -8,22 +8,35 @@
       margin: 0;
       font-family: Arial, sans-serif;
       color: #028090;      /* new text color */
-      background-color: #f7f5f0; /* warm paper base */
+        background-color: #6d7a3f; /* fallback */
+
   background-image:
-    /* subtle vertical fibers */
-    linear-gradient(rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.03) 100%),
-    /* horizontal texture */
-    linear-gradient(90deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.05) 100%),
-    /* fine noise */
+    /* 1. Soft grain/noise */
     repeating-linear-gradient(
       0deg,
-      rgba(0,0,0,0.015),
-      rgba(0,0,0,0.015) 1px,
-      rgba(255,255,255,0.015) 1px,
-      rgba(255,255,255,0.015) 2px
+      rgba(0,0,0,0.05) 0px,
+      rgba(0,0,0,0.05) 1px,
+      rgba(255,255,255,0.05) 1px,
+      rgba(255,255,255,0.05) 2px
+    ),
+    /* 2. Vignette */
+    radial-gradient(
+      circle at center,
+      rgba(0,0,0,0) 60%,
+      rgba(0,0,0,0.25) 100%
+    ),
+    /* 3. Vertical warm gradient */
+    linear-gradient(
+      to bottom,
+      #728b6a 0%,   /* top greenish fade */
+      #a58c57 50%, /* warm gold center */
+      #6c4c30 100% /* brown bottom */
     );
 
-  background-blend-mode: multiply;
+  background-blend-mode: multiply, overlay, normal;
+
+  background-attachment: fixed; /* gives the chart-like feel */
+  background-size: cover;
     }
 
     header {
