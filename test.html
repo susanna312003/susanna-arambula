@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SUSANNA ARAMBULA</title>
+  <title>Susanna Arambula</title>
   <style>
     body {
       margin: 0;
@@ -136,7 +136,7 @@
 <body>
 
 <header>
-  <h1>susanna arambula</h1>
+  <h1>SUSANNA ARAMBULA</h1>
   <p>a digital window to the inside of my mind</p>
 </header>
 
@@ -170,14 +170,23 @@
 </section>
 
 <script>
-/* RANDOM PAPER POPUP */
+  
+/* RANDOM PAPER POPUP — WORKS FOR ALL STACKS */
 window.addEventListener("DOMContentLoaded", () => {
-  const stack = document.querySelector(".stack");
-  const papers = Array.from(stack.children);
+  const stacks = document.querySelectorAll(".stack");
 
-  const randomPaper = papers[Math.floor(Math.random() * papers.length)];
-  randomPaper.style.zIndex = 999;
-});
+  stacks.forEach(stack => {
+    const papers = Array.from(stack.children);
+
+    // choose random paper
+    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+
+    // reset z-indexes first
+    papers.forEach((p, i) => p.style.zIndex = i + 1);
+
+    // put the random one on top
+    randomPaper.style.zIndex = 999;
+  });
 
 /* RANDOM COLOR GENERATOR FOR BACKGROUND */
   function randomColor(h, s = 35, l = 45) {
