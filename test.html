@@ -172,15 +172,15 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 /* RANDOM COLOR GENERATOR FOR BACKGROUND */
-function randomColor(h, s = 35, l = 45) {
-  return `hsl(${h}, ${s}%, ${l}%)`;
-}
+// generate 3 distinct hues, spaced around the color wheel
+const hue1 = Math.floor(Math.random() * 360);
+const hue2 = (hue1 + 40 + Math.random()*40) % 360; // 40–80° apart
+const hue3 = (hue1 + 140 + Math.random()*60) % 360; // far away hue
 
-const hue = Math.floor(Math.random() * 360);
+document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
+document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
+document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
 
-document.documentElement.style.setProperty('--c1', randomColor(hue, 35, 40));
-document.documentElement.style.setProperty('--c2', randomColor(hue, 40, 50));
-document.documentElement.style.setProperty('--c3', randomColor(hue, 45, 30));
 </script>
 
 </body>
