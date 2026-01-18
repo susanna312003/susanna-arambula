@@ -5,84 +5,50 @@
   <title>Susanna Arambula</title>
 
   <style>
+    :root {
+      --c1: #333;
+      --c2: #444;
+      --c3: #555;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       color: #fcfaf6;
+      background: linear-gradient(to bottom, var(--c1), var(--c2), var(--c3));
+      background-attachment: fixed;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* text shadow for selected elements */
+    /* FILM TEXTURE OVERLAY */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0; /* put ABOVE background, below content */
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.035) 0%, transparent 55%),
+        radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 60%),
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 70%),
+        radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06), transparent 70%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 6px),
+        repeating-linear-gradient(180deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 12px),
+        radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.32) 100%);
+      background-blend-mode: overlay, overlay, overlay, overlay, soft-light, multiply, multiply;
+    }
+
     h1, h2, p {
       text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
     }
 
-   /* BACKGROUND */
-body {
-  background-color: var(--c1);
-
-  background-image:
-
-    /* 3-color gradient base */
-    linear-gradient(to bottom, var(--c1), var(--c2), var(--c3)),
-
-    /* dust speckles */
-    radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%),
-    radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 70%),
-
-    /* random blotches */
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 70%),
-    radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06), transparent 70%),
-    radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04), transparent 70%),
-    radial-gradient(circle at 70% 20%, rgba(0,0,0,0.05), transparent 70%),
-
-    /* faint streaks (film scratches) */
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.06) 0px,
-      rgba(255,255,255,0.06) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(0,0,0,0.07) 0px,
-      rgba(0,0,0,0.07) 0.5px,
-      transparent 0.5px,
-      transparent 4px
-    ),
-
-    /* fine horizontal noise streaks */
-    repeating-linear-gradient(
-      180deg,
-      rgba(255,255,255,0.02) 0px,
-      rgba(255,255,255,0.02) 0.5px,
-      transparent 0.5px,
-      transparent 10px
-    ),
-
-    /* vignette */
-    radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.3) 100%);
-
-  background-blend-mode:
-    normal,
-    overlay,
-    overlay,
-    overlay,
-    overlay,
-    overlay,
-    soft-light,
-    screen,
-    multiply,
-    overlay,
-    multiply;
-
-  background-attachment: fixed;
-  background-size: cover;
-}
-
     header {
       text-align: center;
       padding: 50px 20px;
+      position: relative;
+      z-index: 2;
     }
 
     .sections {
@@ -91,6 +57,8 @@ body {
       justify-content: center;
       gap: 100px;
       padding: 40px;
+      position: relative;
+      z-index: 2;
     }
 
     .section {
@@ -98,6 +66,8 @@ body {
       width: 250px;
       text-decoration: none;
       color: #fcfaf6;
+      position: relative;
+      transition: opacity 0.3s ease;
     }
 
     .section img {
@@ -108,16 +78,18 @@ body {
       transition: transform 0.2s;
     }
 
-    .section h2 {
+    .section p {
       margin-top: 10px;
       font-size: 1.2rem;
     }
 
-    /* STACK OF PAPERS */
+    /* STACK */
     .stack {
       position: relative;
       width: 100%;
       height: 250px;
+      transition: transform 0.45s ease;
+      transform-origin: center center;
     }
 
     .stack img {
@@ -128,26 +100,10 @@ body {
       transition: transform 0.25s ease, z-index 0.2s ease;
     }
 
-    .stack img:nth-child(1) {
-      transform: rotate(-4deg);
-      top: 0px; left: 0px;
-      z-index: 1;
-    }
-    .stack img:nth-child(2) {
-      transform: rotate(3deg);
-      top: 8px; left: -6px;
-      z-index: 2;
-    }
-    .stack img:nth-child(3) {
-      transform: rotate(-2deg);
-      top: 15px; left: 4px;
-      z-index: 3;
-    }
-    .stack img:nth-child(4) {
-      transform: rotate(5deg);
-      top: -6px; left: 6px;
-      z-index: 0;
-    }
+    /* Only 3 images, so remove 4th rules */
+    .stack img:nth-child(1) { transform: rotate(-4deg); top: 0; left: 0; z-index: 1; }
+    .stack img:nth-child(2) { transform: rotate(3deg); top: 8px; left: -6px; z-index: 2; }
+    .stack img:nth-child(3) { transform: rotate(-2deg); top: 15px; left: 4px; z-index: 3; }
 
     .stack img:hover {
       transform: rotate(0deg) scale(1.05);
@@ -159,7 +115,7 @@ body {
 <body>
 
 <header>
-  <h1>susanna arambula</h1>
+  <h1 id="title">susanna arambula</h1>
   <p>a digital window to the inside of my mind</p>
 </header>
 
@@ -167,27 +123,27 @@ body {
 
   <a href="sketches.html" class="section">
     <div class="stack">
-      <img src="images/tinysketch1.jpg" loading="lazy">
-      <img src="images/tinysketch2.png" loading="lazy">
-      <img src="images/tinysketch3.jpg" loading="lazy">
+      <img src="images/tinysketch1.jpg" alt="" loading="lazy">
+      <img src="images/tinysketch2.png" alt="" loading="lazy">
+      <img src="images/tinysketch3.jpg" alt="" loading="lazy">
     </div>
     <p>sketches & doodles</p>
   </a>
 
   <a href="photography.html" class="section">
     <div class="stack">
-      <img src="images/tinyphotoexp1.jpg" loading="lazy">
-      <img src="images/tinyphotoexp2.jpg" loading="lazy">
-      <img src="images/tinyphotoexp3.jpg" loading="lazy">
+      <img src="images/tinyphotoexp1.jpg" alt="" loading="lazy">
+      <img src="images/tinyphotoexp2.jpg" alt="" loading="lazy">
+      <img src="images/tinyphotoexp3.jpg" alt="" loading="lazy">
     </div>
     <p>photographic experiments</p>
   </a>
 
   <a href="digital.html" class="section">
     <div class="stack">
-      <img src="images/digitalpainting.jpg" loading="lazy">
-      <img src="images/digital2.jpg" loading="lazy">
-      <img src="images/digital.jpg" loading="lazy">
+      <img src="images/digitalpainting.jpg" alt="" loading="lazy">
+      <img src="images/digital2.jpg" alt="" loading="lazy">
+      <img src="images/digital.jpg" alt="" loading="lazy">
     </div>
     <p>digital paintings and drawings</p>
   </a>
@@ -199,10 +155,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   /* RANDOM PAPER POPUP */
   document.querySelectorAll(".stack").forEach(stack => {
-    const papers = Array.from(stack.children);
+    const papers = [...stack.children];
     const randomPaper = papers[Math.floor(Math.random() * papers.length)];
     papers.forEach((p, i) => p.style.zIndex = i + 1);
-    randomPaper.style.zIndex = 999;
+    randomPaper.style.zIndex = 50;
   });
 
   /* RANDOM BACKGROUND COLORS */
@@ -211,34 +167,12 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const hue1 = Math.floor(Math.random() * 360);
-  const hue2 = (hue1 + 40 + Math.random()*40) % 360;
-  const hue3 = (hue1 + 140 + Math.random()*60) % 360;
+  const hue2 = (hue1 + 40 + Math.random() * 40) % 360;
+  const hue3 = (hue1 + 140 + Math.random() * 60) % 360;
 
   document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
   document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
   document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
-
-  /* RANDOM FONT PER LETTER */
-  const title = document.querySelector("header h1");
-  const text = title.textContent;
-
-  const fonts = [
-    "Times New Roman",
-    "Courier New",
-    "Brush Script MT",
-    "Arial",
-    "Comic Sans MS"
-  ];
-
-  title.innerHTML = text
-    .split("")
-    .map(letter => {
-      const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-      const safe = letter === " " ? "&nbsp;" : letter;
-      return `<span style="font-family: ${randomFont}; display:inline-block;">${safe}</span>`;
-    })
-    .join("");
-
 });
 </script>
 
