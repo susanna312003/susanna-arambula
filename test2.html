@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>susanna arambula</title>
+  <title>Susanna Arambula</title>
+
   <style>
     body {
       margin: 0;
@@ -10,6 +11,7 @@
       color: #fcfaf6;
     }
 
+    /* text shadow for selected elements */
     h1, h2, p {
       text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
     }
@@ -19,15 +21,30 @@
       background-color: var(--c1);
 
       background-image:
+        /* 3-color gradient base */
         linear-gradient(to bottom, var(--c1), var(--c2), var(--c3)),
+
+        /* noise layers */
         radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), transparent 70%),
         radial-gradient(circle at 80% 60%, rgba(0,0,0,0.06), transparent 70%),
         radial-gradient(circle at 40% 80%, rgba(255,255,255,0.04), transparent 70%),
         radial-gradient(circle at 70% 20%, rgba(0,0,0,0.05), transparent 70%),
+
         linear-gradient(25deg, rgba(0,0,0,0.03) 0%, rgba(255,255,255,0.02) 100%),
         linear-gradient(-15deg, rgba(0,0,0,0.02) 0%, rgba(255,255,255,0.03) 100%),
+
         radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.25) 100%);
-      background-blend-mode: normal, overlay, overlay, overlay, overlay, soft-light, soft-light, multiply;
+
+      background-blend-mode:
+        normal,
+        overlay,
+        overlay,
+        overlay,
+        overlay,
+        soft-light,
+        soft-light,
+        multiply;
+
       background-attachment: fixed;
       background-size: cover;
     }
@@ -48,28 +65,28 @@
     .section {
       text-align: center;
       width: 250px;
-      cursor: pointer;
-      color: #fcfaf6;
       text-decoration: none;
+      color: #fcfaf6;
     }
 
-    /* Description ABOVE images */
-    .section p.label {
-      margin-bottom: 20px;
+    .section img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25));
+      transition: transform 0.2s;
+    }
+
+    .section h2 {
+      margin-top: 10px;
       font-size: 1.2rem;
     }
 
-    /* STACK OF PAPERS (collapsible) */
+    /* STACK OF PAPERS */
     .stack {
       position: relative;
       width: 100%;
       height: 250px;
-      transition: height 0.5s ease;
-      overflow: hidden;
-    }
-
-    .stack.open {
-      height: 800px; /* enough to show images spaced vertically */
     }
 
     .stack img {
@@ -77,96 +94,122 @@
       width: 100%;
       height: 250px;
       object-fit: contain;
-      transition: transform 0.25s ease, top 0.5s ease, z-index 0.2s ease;
+      transition: transform 0.25s ease, z-index 0.2s ease;
     }
 
-    /* collapsed positions */
-    .stack img:nth-child(1) { transform: rotate(-4deg); top: 0px; left: 0px; z-index: 1;}
-    .stack img:nth-child(2) { transform: rotate(3deg); top: 8px; left: -6px; z-index: 2;}
-    .stack img:nth-child(3) { transform: rotate(-2deg); top: 15px; left: 4px; z-index: 3;}
-    .stack img:nth-child(4) { transform: rotate(5deg); top: -6px; left: 6px; z-index: 0;}
+    .stack img:nth-child(1) {
+      transform: rotate(-4deg);
+      top: 0px; left: 0px;
+      z-index: 1;
+    }
+    .stack img:nth-child(2) {
+      transform: rotate(3deg);
+      top: 8px; left: -6px;
+      z-index: 2;
+    }
+    .stack img:nth-child(3) {
+      transform: rotate(-2deg);
+      top: 15px; left: 4px;
+      z-index: 3;
+    }
+    .stack img:nth-child(4) {
+      transform: rotate(5deg);
+      top: -6px; left: 6px;
+      z-index: 0;
+    }
 
-    /* expanded (spread vertically) */
-    .stack.open img:nth-child(1) { top: 0px; transform: rotate(0deg); }
-    .stack.open img:nth-child(2) { top: 270px; transform: rotate(0deg); }
-    .stack.open img:nth-child(3) { top: 540px; transform: rotate(0deg); }
-    .stack.open img:nth-child(4) { top: 810px; transform: rotate(0deg); }
-
+    .stack img:hover {
+      transform: rotate(0deg) scale(1.05);
+      z-index: 99 !important;
+    }
   </style>
 </head>
+
 <body>
 
 <header>
-  <h1>susanna arambula</h1>
+  <h1>SUSANNA ARAMBULA</h1>
   <p>a digital window to the inside of my mind</p>
 </header>
 
 <section class="sections">
 
-  <a class="section">
-    <p class="label">sketches & doodles</p>
+  <a href="sketches.html" class="section">
     <div class="stack">
-      <img src="images/sketch1.jpg">
-      <img src="images/sketch2.jpg">
-      <img src="images/sketch3.png">
+      <img src="images/tinysketch1.jpg" loading="lazy">
+      <img src="images/tinysketch2.png" loading="lazy">
+      <img src="images/tinysketch3.png" loading="lazy">
     </div>
+    <p>sketches & doodles</p>
   </a>
 
-  <a class="section">
-    <p class="label">photographic experiments</p>
+  <a href="photography.html" class="section">
     <div class="stack">
-      <img src="images/photoexp.jpg">
-      <img src="images/digital smaller.jpg">
-      <img src="images/photoexp3.jpg">
+      <img src="images/tinyphotoexp1.jpg" loading="lazy">
+      <img src="images/tinyphotoexp2.jpg" loading="lazy">
+      <img src="images/tinyphotoexp3.jpg" loading="lazy">
     </div>
+    <p>photographic experiments</p>
   </a>
 
-  <a class="section">
-    <p class="label">digital paintings and drawings</p>
+  <a href="digital.html" class="section">
     <div class="stack">
-      <img src="images/digitalpainting.jpg">
-      <img src="images/digital2.jpg">
-      <img src="images/digital.jpg">
+      <img src="images/digitalpainting.jpg" loading="lazy">
+      <img src="images/digital2.jpg" loading="lazy">
+      <img src="images/digital.jpg" loading="lazy">
     </div>
+    <p>digital paintings and drawings</p>
   </a>
 
 </section>
 
 <script>
-/* RANDOM ORDER OF SECTIONS */
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".sections");
-  const sections = Array.from(container.children);
+window.addEventListener("DOMContentLoaded", () => {
 
-  sections.sort(() => Math.random() - 0.5);
-
-  sections.forEach(section => container.appendChild(section));
-});
-
-/* CLICK TO EXPAND STACKS */
-document.querySelectorAll(".section").forEach(section => {
-  section.addEventListener("click", e => {
-    e.preventDefault();
-    const stack = section.querySelector(".stack");
-    stack.classList.toggle("open");
+  /* RANDOM PAPER POPUP */
+  document.querySelectorAll(".stack").forEach(stack => {
+    const papers = Array.from(stack.children);
+    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+    papers.forEach((p, i) => p.style.zIndex = i + 1);
+    randomPaper.style.zIndex = 999;
   });
+
+  /* RANDOM BACKGROUND COLORS */
+  function randomColor(h, s = 35, l = 45) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  const hue1 = Math.floor(Math.random() * 360);
+  const hue2 = (hue1 + 40 + Math.random()*40) % 360;
+  const hue3 = (hue1 + 140 + Math.random()*60) % 360;
+
+  document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
+  document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
+  document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
+
+  /* RANDOM FONT PER LETTER */
+  const title = document.querySelector("header h1");
+  const text = title.textContent;
+
+  const fonts = [
+    "Times New Roman",
+    "Courier New",
+    "Brush Script MT",
+    "Arial",
+    "Comic Sans MS"
+  ];
+
+  title.innerHTML = text
+    .split("")
+    .map(letter => {
+      const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+      const safe = letter === " " ? "&nbsp;" : letter;
+      return `<span style="font-family: ${randomFont}; display:inline-block;">${safe}</span>`;
+    })
+    .join("");
+
 });
-
-/* RANDOM COLOR BACKGROUND */
-function randomColor(h, s = 35, l = 45) {
-  return `hsl(${h}, ${s}%, ${l}%)`;
-}
-
-const hue1 = Math.floor(Math.random() * 360);
-const hue2 = (hue1 + 40 + Math.random()*40) % 360;
-const hue3 = (hue1 + 140 + Math.random()*60) % 360;
-
-document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
-document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
-document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
-
 </script>
 
 </body>
 </html>
-
