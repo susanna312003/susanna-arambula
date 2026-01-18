@@ -22,6 +22,7 @@
       overflow-x: hidden;
     }
 
+    /* FILM TEXTURE OVERLAY */
     body::before {
       content: "";
       position: fixed;
@@ -39,6 +40,10 @@
       background-blend-mode: overlay, overlay, overlay, overlay, soft-light, multiply, multiply;
     }
 
+    h1, h2, p {
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+
     header {
       text-align: center;
       padding: 50px 20px;
@@ -46,52 +51,42 @@
       z-index: 2;
     }
 
-    h1, h2, p {
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-    }
-
-    /* WHEEL LAYOUT */
-    .wheel {
-      position: relative;
-      width: 100%;
-      height: 600px;
+    .sections {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      perspective: 1200px;
-      z-index: 2;
-      margin-top: 40px;
-    }
-
-    .wheel-inner {
+      gap: 100px;
+      padding: 40px;
       position: relative;
-      width: 600px;
-      height: 450px;
-      transform-style: preserve-3d;
-      transition: transform 0.8s ease;
+      z-index: 2;
     }
 
     .section {
+      text-align: center;
+      width: 250px;
       text-decoration: none;
       color: #fcfaf6;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform-style: preserve-3d;
-      transition: transform 0.8s ease;
-      cursor: pointer;
+      position: relative;
+      transition: opacity 0.3s ease;
     }
 
     .section p {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 1.3rem;
+      margin-bottom: 25px;
+      font-size: 1.2rem;
     }
 
-    /* STACK */
+    .section img {
+      width: 100%;
+      height: 250px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,0.5));
+      transition: transform 0.2s;
+    }
+
+    /* STACK ===================================================== */
     .stack {
       position: relative;
-      width: 250px;
+      width: 100%;
       height: 250px;
       transition: transform 0.45s ease;
       transform-origin: center center;
@@ -102,21 +97,41 @@
       width: 100%;
       height: 250px;
       object-fit: contain;
-      transition: transform 0.25s ease, z-index 0.2s ease;
+      transition:
+        transform 0.25s ease,
+        opacity 0.2s ease,
+        z-index 0s;
+      pointer-events: auto;
     }
 
-    .stack img:nth-child(1) { transform: rotate(-4deg); top: 0; left: 0; z-index: 1; }
-    .stack img:nth-child(2) { transform: rotate(3deg); top: 8px; left: -6px; z-index: 2; }
-    .stack img:nth-child(3) { transform: rotate(-2deg); top: 15px; left: 4px; z-index: 3; }
+    .stack img:nth-child(1) { transform: rotate(-7deg); top: 0; left: 0; z-index: 1; }
+    .stack img:nth-child(2) { transform: rotate(9deg); top: 35px; left: -25px; z-index: 2; }
+    .stack img:nth-child(3) { transform: rotate(-6deg); top: 65px; left: 18px; z-index: 3; }
 
-    .stack img:hover {
+    .stack:hover img {
+      opacity: 0.25;
+    }
+
+    .stack img.selected {
+      top: 0 !important;
+      left: 0 !important;
       transform: rotate(0deg) scale(1.05);
       z-index: 99 !important;
     }
 
-    /* DIM OTHER SECTIONS */
-    .dimmed {
-      opacity: 0.25;
+    .stack.expanded {
+      height: auto;
+      padding-top: 10px;
+    }
+
+    .stack.expanded img {
+      position: static;
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-bottom: 12px;
+      transform: none !important;
+      z-index: auto !important;
     }
   </style>
 </head>
@@ -128,95 +143,81 @@
   <p>a digital window to the inside of my mind</p>
 </header>
 
-<!-- WHEEL OF 3 STACKS -->
-<section class="wheel">
-  <div class="wheel-inner">
+<section class="sections">
 
-    <a href="sketches.html" class="section">
-      <div class="stack">
-        <img src="images/tinysketch1.jpg">
-        <img src="images/tinysketch2.png">
-        <img src="images/tinysketch3.jpg">
-      </div>
-      <p>sketches & doodles</p>
-    </a>
+  <a href="sketches.html" class="section">
+    <p>sketches & doodles</p>
+    <div class="stack">
+      <img src="images/tinysketch1.jpg" alt="" loading="lazy">
+      <img src="images/tinysketch2.png" alt="" loading="lazy">
+      <img src="images/tinysketch3.jpg" alt="" loading="lazy">
+    </div>
+  </a>
 
-    <a href="photography.html" class="section">
-      <div class="stack">
-        <img src="images/tinyphotoexp1.jpg">
-        <img src="images/tinyphotoexp2.jpg">
-        <img src="images/tinyphotoexp3.jpg">
-      </div>
-      <p>photographic experiments</p>
-    </a>
+  <a href="photography.html" class="section">
+    <p>photographic experiments</p>
+    <div class="stack">
+      <img src="images/tinyphotoexp1.jpg" alt="" loading="lazy">
+      <img src="images/tinyphotoexp2.jpg" alt="" loading="lazy">
+      <img src="images/tinyphotoexp3.jpg" alt="" loading="lazy">
+    </div>
+  </a>
 
-    <a href="digital.html" class="section">
-      <div class="stack">
-        <img src="images/digitalpainting.jpg">
-        <img src="images/digital2.jpg">
-        <img src="images/digital.jpg">
-      </div>
-      <p>digital paintings and drawings</p>
-    </a>
+  <a href="digital.html" class="section">
+    <p>digital paintings and drawings</p>
+    <div class="stack">
+      <img src="images/digitalpainting.jpg" alt="" loading="lazy">
+      <img src="images/digital2.jpg" alt="" loading="lazy">
+      <img src="images/digital.jpg" alt="" loading="lazy">
+    </div>
+  </a>
 
-  </div>
 </section>
 
+<!-- FIXED SCRIPTS — all valid now -->
 <script>
-/* RANDOM PAPER POPUP */
-document.querySelectorAll(".stack").forEach(stack => {
-  const imgs = [...stack.children];
-  const random = imgs[Math.floor(Math.random() * imgs.length)];
-  imgs.forEach((img, i) => img.style.zIndex = i + 1);
-  random.style.zIndex = 50;
-});
+window.addEventListener("DOMContentLoaded", () => {
 
-/* RANDOM BG COLORS */
-function randomColor(h, s = 35, l = 45) {
-  return `hsl(${h}, ${s}%, ${l}%)`;
-}
-
-const hue1 = Math.floor(Math.random() * 360);
-const hue2 = (hue1 + 40 + Math.random() * 40) % 360;
-const hue3 = (hue1 + 140 + Math.random() * 60) % 360;
-
-document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
-document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
-document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
-
-/* RANDOM FONTS FOR TITLE */
-const title = document.getElementById("title");
-const text = title.textContent;
-const fonts = ["Times New Roman", "Courier New", "Brush Script MT", "Arial", "Comic Sans MS"];
-
-title.innerHTML = [...text].map(letter => {
-  const f = fonts[(Math.random() * fonts.length) | 0];
-  return `<span style="font-family:${f}">${letter === " " ? "&nbsp;" : letter}</span>`;
-}).join("");
-
-/* WHEEL SETUP */
-const wheel = document.querySelector(".wheel-inner");
-const sections = [...document.querySelectorAll(".wheel .section")];
-
-sections.forEach((sec, i) => {
-  const angle = i * 120;
-  sec.dataset.angle = angle;
-  sec.style.transform =
-    `translate(-50%, -50%) rotate(${angle}deg) translate(250px) rotate(${-angle}deg)`;
-});
-
-/* WHEEL ROTATION ON HOVER */
-sections.forEach(sec => {
-  sec.addEventListener("mouseenter", () => {
-    const targetAngle = -sec.dataset.angle;
-    wheel.style.transform = `rotate(${targetAngle}deg)`;
-
-    sections.forEach(s => { if (s !== sec) s.classList.add("dimmed"); });
+  document.querySelectorAll(".stack").forEach(stack => {
+    const papers = [...stack.children];
+    const randomPaper = papers[Math.floor(Math.random() * papers.length)];
+    papers.forEach((p, i) => p.style.zIndex = i + 1);
+    randomPaper.style.zIndex = 50;
   });
 
-  sec.addEventListener("mouseleave", () => {
-    wheel.style.transform = `rotate(0deg)`;
-    sections.forEach(s => s.classList.remove("dimmed"));
+  function randomColor(h, s = 35, l = 45) {
+    return `hsl(${h}, ${s}%, ${l}%)`;
+  }
+
+  const hue1 = Math.floor(Math.random() * 360);
+  const hue2 = (hue1 + 40 + Math.random() * 40) % 360;
+  const hue3 = (hue1 + 140 + Math.random() * 60) % 360;
+
+  document.documentElement.style.setProperty('--c1', randomColor(hue1, 35, 45));
+  document.documentElement.style.setProperty('--c2', randomColor(hue2, 40, 50));
+  document.documentElement.style.setProperty('--c3', randomColor(hue3, 45, 40));
+
+});
+</script>
+
+<script>
+document.querySelectorAll(".stack").forEach(stack => {
+  stack.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    stack.classList.toggle("expanded");
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll(".stack").forEach(stack => {
+  const imgs = stack.querySelectorAll("img");
+  imgs.forEach(img => {
+    img.addEventListener("mouseenter", () => {
+      imgs.forEach(i => i.classList.remove("selected"));
+      img.classList.add("selected");
+    });
   });
 });
 </script>
