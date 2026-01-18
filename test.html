@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>susanna arambula </title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #E4FDE1; /* new background */
+      color: #028090;      /* new text color */
+    }
 
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    .section {
+      text-align: center;
+      width: 250px;
+      text-decoration: none;
+      color: #028090; /* link text matches your color */
+    }
+
+    .section img {
+  width: 100%;
+  height: 250px;        /* choose the uniform height */
+  object-fit: contain; /* NO cropping, just scale down */
+  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25));
+  transition: transform 0.2s;
+}
+
+    .section h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>susanna arambula</h1>
+  <p>a digital window to the inside of my mind</p>  <!-- added line -->
+</header>
+
+<section class="sections">
+  <a href="sketches.html" class="section">
+  <div class="stack">
+    <img src="images/sketch1.png" alt="">
+    <img src="images/sketch2.png" alt="">
+    <img src="images/sketch3.png" alt="">
+  </div>
+  <h2>sketches & doodles</h2>
+</a>
+
+
+  <a href="photography.html" class="section">
+    <img src="images/digital smaller.jpg" alt="photographic experiments">
+    <h2>photographic experiments</h2>
+  </a>
+
+  <a href="digital.html" class="section">
+    <img src="images/digital.jpg" alt="Digital Art">
+    <h2>digital paintings and drawings</h2>
+  </a>
+
+  <a href="writing.html" class="section">
+    <img src="images/writings.jpg" alt="Writings">
+    <h2>writings</h2>
+  </a>
+</section>
+
+</body>
+</html>
