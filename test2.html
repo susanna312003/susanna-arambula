@@ -125,6 +125,32 @@
       transform: rotate(0deg) scale(1.05);
       z-index: 99 !important;
     }
+
+    /* === CENTER CAROUSEL ON HOVER === */
+.stack {
+  transition: transform 0.4s ease, scale 0.4s ease, left 0.4s ease, top 0.4s ease;
+  transform-origin: center center;
+}
+
+.stack.hover-focus {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) scale(1.25) !important;
+  z-index: 9999 !important;
+  pointer-events: auto;
+}
+
+/* Carousel fade effect */
+.stack img {
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+.stack img.active {
+  opacity: 1;
+}
+
   </style>
 </head>
 
