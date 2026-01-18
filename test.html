@@ -28,7 +28,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 0; /* put ABOVE background, below content */
+      z-index: 0;
       background-image:
         radial-gradient(circle, rgba(255,255,255,0.035) 0%, transparent 55%),
         radial-gradient(circle, rgba(0,0,0,0.04) 0%, transparent 60%),
@@ -70,17 +70,17 @@
       transition: opacity 0.3s ease;
     }
 
+    .section p {
+      margin-bottom: 25px; /* extra space ABOVE the image stack */
+      font-size: 1.2rem;
+    }
+
     .section img {
       width: 100%;
       height: 250px;
       object-fit: contain;
       filter: drop-shadow(0 4px 4px rgba(0,0,0,0.25));
       transition: transform 0.2s;
-    }
-
-    .section p {
-      margin-top: 10px;
-      font-size: 1.2rem;
     }
 
     /* STACK */
@@ -100,7 +100,6 @@
       transition: transform 0.25s ease, z-index 0.2s ease;
     }
 
-    /* Only 3 images, so remove 4th rules */
     .stack img:nth-child(1) { transform: rotate(-4deg); top: 0; left: 0; z-index: 1; }
     .stack img:nth-child(2) { transform: rotate(3deg); top: 8px; left: -6px; z-index: 2; }
     .stack img:nth-child(3) { transform: rotate(-2deg); top: 15px; left: 4px; z-index: 3; }
@@ -122,30 +121,30 @@
 <section class="sections">
 
   <a href="sketches.html" class="section">
+    <p>sketches & doodles</p>
     <div class="stack">
       <img src="images/tinysketch1.jpg" alt="" loading="lazy">
       <img src="images/tinysketch2.png" alt="" loading="lazy">
       <img src="images/tinysketch3.jpg" alt="" loading="lazy">
     </div>
-    <p>sketches & doodles</p>
   </a>
 
   <a href="photography.html" class="section">
+    <p>photographic experiments</p>
     <div class="stack">
       <img src="images/tinyphotoexp1.jpg" alt="" loading="lazy">
       <img src="images/tinyphotoexp2.jpg" alt="" loading="lazy">
       <img src="images/tinyphotoexp3.jpg" alt="" loading="lazy">
     </div>
-    <p>photographic experiments</p>
   </a>
 
   <a href="digital.html" class="section">
+    <p>digital paintings and drawings</p>
     <div class="stack">
       <img src="images/digitalpainting.jpg" alt="" loading="lazy">
       <img src="images/digital2.jpg" alt="" loading="lazy">
       <img src="images/digital.jpg" alt="" loading="lazy">
     </div>
-    <p>digital paintings and drawings</p>
   </a>
 
 </section>
@@ -178,3 +177,4 @@ window.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
