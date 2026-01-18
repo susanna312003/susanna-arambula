@@ -115,30 +115,15 @@
   opacity: 0.25; /* fade others back */
 }
 
-.stack img:hover {
-  position: absolute;
-  top: 0 !important;
-  left: 0 !important;
-  transform: rotate(0deg) scale(1.1) !important;
-  z-index: 999 !important;
-  opacity: 1 !important;
-}
+/* REMOVE the existing .stack img:hover rules and replace with these */
 
-.stack img:nth-child(1) { transform: rotate(-7deg); top: 0; left: 0; z-index: 1; }
-.stack img:nth-child(2) { transform: rotate(9deg); top: 35px; left: -25px; z-index: 2; }
-.stack img:nth-child(3) { transform: rotate(-6deg); top: 65px; left: 18px; z-index: 3; }
-
-
-    .stack img:hover {
-      transform: rotate(0deg) scale(1.05);
-      z-index: 99 !important;
-    }
-    .stack img:hover {
+.stack img.selected {
   top: 0 !important;
   left: 0 !important;
   transform: rotate(0deg) scale(1.05);
   z-index: 99 !important;
 }
+
 /* When a stack is expanded */
 .stack.expanded {
   height: auto; /* allow vertical growth */
@@ -227,6 +212,21 @@ window.addEventListener("DOMContentLoaded", () => {
     stack.classList.toggle("expanded");
   });
 });
+<script>
+document.querySelectorAll(".stack").forEach(stack => {
+  const imgs = stack.querySelectorAll("img");
+
+  imgs.forEach(img => {
+    img.addEventListener("mouseenter", () => {
+      // Remove "selected" from all images in this stack
+      imgs.forEach(i => i.classList.remove("selected"));
+
+      // Add "selected" to hovered one
+      img.classList.add("selected");
+    });
+  });
+});
+</script>
 
 </script>
 
