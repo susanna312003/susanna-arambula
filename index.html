@@ -1,28 +1,55 @@
 <!DOCTYPE html>
-<html>
-<style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Susanna Arambula – Art Portfolio</title>
+  <style>
     body {
-      background: #E4FDE1;
-      color: #028090;
+      margin: 0;
       font-family: Arial, sans-serif;
-      margin: 20px;
+      background: #E4FDE1; /* new background */
+      color: #028090;      /* new text color */
     }
-    img {
-      max-width: 100%;
-      display: block;
-      margin-bottom: 20px;
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    .section {
+      text-align: center;
+      width: 250px;
+      text-decoration: none;
+      color: #028090; /* link text matches your color */
+    }
+
+    .section img {
+      width: 100%;
       border-radius: 6px;
     }
-  </style>   <h2>susanna arambula</h2>
 
-<ul>
-  <li><a href="sketches.html">sketches</a></li>
-  <li><a href="photography.html">photography</a></li>
-  <li><a href="digital.html">digital works</a></li>
-  <li><a href="writing.html">writings</a></li>
-  <li><a href="inspirations.html">inspirations</a></li>
-</ul>
+    .section h2 {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
 
-  </body>
-</html>
+<header>
+  <h1>Susanna Arambula</h1>
+  <p>Art Portfolio</p>
+</header>
+
+<section class="sections">
+  <a href="sketches.html" class="section">
+
 
