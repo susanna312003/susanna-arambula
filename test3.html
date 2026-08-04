@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio | 3D Modelling & GIS</title>
+  <title>Portfolio | 3D Modeling & GIS</title>
   <style>
     /* CSS Variables & Global Reset */
     :root {
-      --bg-color: #ffffff;
-      --text-main: #111111;
-      --text-muted: #555555;
-      --border: #dddddd;
-      --max-width: 1000px;
+      --bg-color: #f9f9fb;
+      --card-bg: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --accent: #2b2b2b;
+      --border: #e2e8f0;
+      --max-width: 1100px;
+      --radius: 8px;
     }
 
     * {
@@ -21,7 +24,7 @@
     }
 
     body {
-      font-family: "Times New Roman", Times, serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
       line-height: 1.6;
@@ -51,22 +54,23 @@
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
     }
 
     .profile-text h1 {
       font-size: 2.25rem;
-      font-weight: normal;
+      font-weight: 600;
       margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
     }
 
     .profile-text p {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
       max-width: 650px;
     }
 
-    /* Gallery Sections */
+    /* Portfolio Sections */
     section {
       padding: 3.5rem 0;
       border-bottom: 1px solid var(--border);
@@ -77,33 +81,60 @@
     }
 
     .section-title {
-      font-size: 1.6rem;
-      font-weight: normal;
+      font-size: 1.5rem;
+      font-weight: 600;
       margin-bottom: 2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: -0.01em;
     }
 
-    /* Pure Image Grid */
-    .image-grid {
+    /* Image Grid Layout */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
     }
 
-    .image-grid img {
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-img {
       width: 100%;
-      height: 250px;
+      height: 220px;
       object-fit: cover;
       display: block;
-      border: 1px solid var(--border);
+      background-color: #eee;
+    }
+
+    .card-content {
+      padding: 1.25rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
     }
 
     /* Footer */
     footer {
-      padding: 3rem 0;
+      padding: 2.5rem 0;
       text-align: center;
-      font-size: 1rem;
+      font-size: 0.875rem;
       color: var(--text-muted);
     }
 
@@ -119,7 +150,7 @@
         margin: 0 auto;
       }
 
-      .image-grid {
+      .grid {
         grid-template-columns: 1fr;
       }
     }
@@ -133,41 +164,79 @@
       <div class="profile">
         <img src="images/profile.jpg" alt="Profile Picture" class="profile-img">
         <div class="profile-text">
-          <h1> Your Name </h1>
-          <p> Short description about yourself, your background, and your focus across 3D modelling, rendering, and GIS mapping. </p>
+          <h1>Your Name</h1>
+          <p>Short description about yourself, your background, and your focus areas across 3D modeling, rendering, and GIS spatial analysis.</p>
         </div>
       </div>
     </header>
 
     <!-- Section 1: 3D Modelling and Rendering -->
-    <section id="3d-modelling">
-      <h2 class="section-title">3D Modelling and Rendering</h2>
-      <div class="image-grid">
-        <img src="images/3d-1.jpg" alt="3D Model Work 1">
-        <img src="images/3d-2.jpg" alt="3D Model Work 2">
-        <img src="images/3d-3.jpg" alt="3D Model Work 3">
-        <img src="images/3d-4.jpg" alt="3D Model Work 4">
-        <img src="images/3d-5.jpg" alt="3D Model Work 5">
-        <img src="images/3d-6.jpg" alt="3D Model Work 6">
+    <section id="3d-modeling">
+      <h2 class="section-title">3D Modelling & Rendering</h2>
+      <div class="grid">
+        
+        <div class="card">
+          <img src="images/3d-project1.jpg" alt="3D Model Project 1" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">Project Title 1</h3>
+            <p class="card-desc">Brief description of the 3D model, software used, or rendering technique.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/3d-project2.jpg" alt="3D Model Project 2" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">Project Title 2</h3>
+            <p class="card-desc">Brief description of the 3D model, software used, or rendering technique.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/3d-project3.jpg" alt="3D Model Project 3" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">Project Title 3</h3>
+            <p class="card-desc">Brief description of the 3D model, software used, or rendering technique.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- Section 2: GIS Work -->
     <section id="gis-work">
       <h2 class="section-title">GIS Work</h2>
-      <div class="image-grid">
-        <img src="images/gis-1.jpg" alt="GIS Work 1">
-        <img src="images/gis-2.jpg" alt="GIS Work 2">
-        <img src="images/gis-3.jpg" alt="GIS Work 3">
-        <img src="images/gis-4.jpg" alt="GIS Work 4">
-        <img src="images/gis-5.jpg" alt="GIS Work 5">
-        <img src="images/gis-6.jpg" alt="GIS Work 6">
+      <div class="grid">
+
+        <div class="card">
+          <img src="images/gis-project1.jpg" alt="GIS Project 1" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">Spatial Map Title 1</h3>
+            <p class="card-desc">Brief explanation of spatial data, layer analysis, or cartographic design.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/gis-project2.jpg" alt="GIS Project 2" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">Spatial Map Title 2</h3>
+            <p class="card-desc">Brief explanation of spatial data, layer analysis, or cartographic design.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="images/gis-project3.jpg" alt="GIS Project 3" class="card-img">
+          <div class="card-content">
+            <h3 class="card-title">Spatial Map Title 3</h3>
+            <p class="card-desc">Brief explanation of spatial data, layer analysis, or cartographic design.</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- Footer -->
     <footer>
-      <p>&copy; 2026 Your Name</p>
+      <p>&copy; 2026 Your Name. All rights reserved.</p>
     </footer>
   </div>
 
