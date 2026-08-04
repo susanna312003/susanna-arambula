@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --text-color: #1a1a1a;
+            --muted-color: #666666;
+            --border-color: #e5e5e5;
+            --accent-color: #000000;
+            --link-hover: #444444;
+            --max-width: 720px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --text-color: #e0e0e0;
+                --muted-color: #a0a0a0;
+                --border-color: #2a2a2a;
+                --accent-color: #ffffff;
+                --link-hover: #cccccc;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--accent-color);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: var(--muted-color);
+            margin-top: 0.25rem;
+        }
+
+        nav {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        nav a {
+            color: var(--muted-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted-color);
+            margin-bottom: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.25rem;
+            transition: border-color 0.15s ease;
+        }
+
+        .card:hover {
+            border-color: var(--muted-color);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .card-title:hover {
+            text-decoration: underline;
+        }
+
+        .card-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--muted-color);
+            background: var(--border-color);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.925rem;
+            color: var(--muted-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            color: var(--muted-color);
+            font-family: var(--font-mono);
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .contact-list a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .contact-list a:hover {
+            border-color: var(--accent-color);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--muted-color);
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Your Name</h1>
+        <p class="subtitle">Designer & Architectural Mapping Specialist</p>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                Brief summary of your focus, background, and interests. Detail your core skill set, design methodology, or technical specialization here.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>Selected Projects</h2>
+            <div class="grid">
+                
+                <article class="card">
+                    <div class="card-header">
+                        <a href="#" class="card-title">Project Title One</a>
+                        <span class="card-tag">2026</span>
+                    </div>
+                    <p class="card-desc">
+                        Concise summary describing the project objectives, tools utilized, and final deliverables or outcomes.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">#QGIS</span>
+                        <span class="tag">#SketchUp</span>
+                        <span class="tag">#Visualization</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                        <a href="#" class="card-title">Project Title Two</a>
+                        <span class="card-tag">2025</span>
+                    </div>
+                    <p class="card-desc">
+                        Concise summary describing the project objectives, tools utilized, and final deliverables or outcomes.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">#Modeling</span>
+                        <span class="tag">#Documentation</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <ul class="contact-list">
+                <li>
+                    <span>Email:</span>
+                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                </li>
+                <li>
+                    <span>GitHub:</span>
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a>
+                </li>
+                <li>
+                    <span>LinkedIn:</span>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">linkedin.com/in/yourusername</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <span>&copy; 2026 Your Name</span>
+        <span>Hosted on GitHub Pages</span>
+    </footer>
+
+</body>
+</html>
