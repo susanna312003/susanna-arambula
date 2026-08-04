@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio</title>
+    <title>Susanna Arambula | Portfolio</title>
     <style>
         :root {
             --bg-color: #fafafa;
@@ -11,10 +11,10 @@
             --muted-color: #666666;
             --border-color: #e5e5e5;
             --accent-color: #000000;
-            --link-hover: #444444;
-            --max-width: 720px;
+            --tag-bg: #f0f0f0;
+            --max-width: 740px;
             --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -24,7 +24,7 @@
                 --muted-color: #a0a0a0;
                 --border-color: #2a2a2a;
                 --accent-color: #ffffff;
-                --link-hover: #cccccc;
+                --tag-bg: #222222;
             }
         }
 
@@ -39,7 +39,7 @@
             color: var(--text-color);
             font-family: var(--font-main);
             line-height: 1.6;
-            padding: 2rem 1.5rem;
+            padding: 3rem 1.5rem;
             max-width: var(--max-width);
             margin: 0 auto;
             -webkit-font-smoothing: antialiased;
@@ -52,22 +52,28 @@
         }
 
         h1 {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 600;
             letter-spacing: -0.02em;
             color: var(--accent-color);
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 1.05rem;
+            color: var(--muted-color);
+            margin-top: 0.25rem;
+        }
+
+        .location {
+            font-size: 0.9rem;
             color: var(--muted-color);
             margin-top: 0.25rem;
         }
 
         nav {
-            margin-top: 1rem;
+            margin-top: 1.25rem;
             display: flex;
-            gap: 1.25rem;
+            gap: 1.5rem;
         }
 
         nav a {
@@ -87,30 +93,35 @@
         }
 
         h2 {
-            font-size: 1.1rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             color: var(--muted-color);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
-        p {
-            margin-bottom: 1rem;
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            font-family: var(--font-mono);
+            font-size: 0.825rem;
             color: var(--text-color);
-            font-size: 1rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            background: var(--tag-bg);
+            border: 1px solid var(--border-color);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
         }
 
         .card {
             border: 1px solid var(--border-color);
             border-radius: 6px;
             padding: 1.25rem;
+            margin-bottom: 1.25rem;
             transition: border-color 0.15s ease;
         }
 
@@ -122,45 +133,48 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
+            flex-wrap: wrap;
         }
 
         .card-title {
             font-weight: 600;
             font-size: 1.05rem;
             color: var(--accent-color);
-            text-decoration: none;
         }
 
-        .card-title:hover {
-            text-decoration: underline;
-        }
-
-        .card-tag {
+        .card-date {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--muted-color);
-            background: var(--border-color);
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
         }
 
-        .card-desc {
+        .card-role {
             font-size: 0.925rem;
             color: var(--muted-color);
             margin-bottom: 0.75rem;
+            font-style: italic;
         }
 
-        .tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
+        .card ul {
+            list-style-type: square;
+            margin-left: 1.2rem;
+            color: var(--text-color);
+            font-size: 0.925rem;
         }
 
-        .tag {
-            font-size: 0.8rem;
-            color: var(--muted-color);
-            font-family: var(--font-mono);
+        .card li {
+            margin-bottom: 0.4rem;
+        }
+
+        .education-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
         }
 
         .contact-list {
@@ -170,7 +184,8 @@
         .contact-list li {
             margin-bottom: 0.5rem;
             display: flex;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            font-size: 0.95rem;
         }
 
         .contact-list a {
@@ -196,56 +211,101 @@
 <body>
 
     <header>
-        <h1>Your Name</h1>
-        <p class="subtitle">Designer & Architectural Mapping Specialist</p>
+        <h1>Susanna Arambula</h1>
+        <p class="subtitle">Urban Design & Visualization Assistant</p>
+        <p class="location">Portland, Oregon</p>
         <nav>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#education">Education</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <main>
-        <section id="about">
-            <h2>About</h2>
-            <p>
-                Brief summary of your focus, background, and interests. Detail your core skill set, design methodology, or technical specialization here.
-            </p>
+        <section id="skills">
+            <h2>Technical & Professional Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">QGIS</span>
+                <span class="skill-tag">SketchUp</span>
+                <span class="skill-tag">Adobe InDesign</span>
+                <span class="skill-tag">Squarespace</span>
+                <span class="skill-tag">QuickBooks</span>
+                <span class="skill-tag">ADP RUN</span>
+                <span class="skill-tag">Microsoft Office & Excel</span>
+                <span class="skill-tag">Geospatial Analysis</span>
+                <span class="skill-tag">3D Modeling</span>
+                <span class="skill-tag">Client Relations</span>
+            </div>
         </section>
 
-        <section id="projects">
-            <h2>Selected Projects</h2>
-            <div class="grid">
-                
-                <article class="card">
-                    <div class="card-header">
-                        <a href="#" class="card-title">Project Title One</a>
-                        <span class="card-tag">2026</span>
-                    </div>
-                    <p class="card-desc">
-                        Concise summary describing the project objectives, tools utilized, and final deliverables or outcomes.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">#QGIS</span>
-                        <span class="tag">#SketchUp</span>
-                        <span class="tag">#Visualization</span>
-                    </div>
-                </article>
+        <section id="experience">
+            <h2>Professional Experience</h2>
 
-                <article class="card">
-                    <div class="card-header">
-                        <a href="#" class="card-title">Project Title Two</a>
-                        <span class="card-tag">2025</span>
-                    </div>
-                    <p class="card-desc">
-                        Concise summary describing the project objectives, tools utilized, and final deliverables or outcomes.
-                    </p>
-                    <div class="tags">
-                        <span class="tag">#Modeling</span>
-                        <span class="tag">#Documentation</span>
-                    </div>
-                </article>
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">Crandall Arambula</span>
+                    <span class="card-date">June 2023 – Present</span>
+                </div>
+                <div class="card-role">Urban Design & Visualization Assistant • Portland, OR</div>
+                <ul>
+                    <li><strong>Geospatial Analysis & Mapping:</strong> Self-taught QGIS to develop urban maps used in public town hall meetings to communicate city planning initiatives to stakeholders.</li>
+                    <li><strong>3D Modeling:</strong> Leveraged SketchUp to create three-dimensional urban models, assisting in the visualization of city design projects.</li>
+                    <li><strong>Business Development:</strong> Streamlined the production of firm proposals using Adobe InDesign, ensuring high-quality formatting and narrative consistency.</li>
+                    <li><strong>Digital Branding:</strong> Executed a full redesign of the firm's website via Squarespace, modernizing the user interface to better showcase project portfolios.</li>
+                    <li><strong>Financial Administration & Payroll:</strong> Entrusted with firm-wide accounts payable in QuickBooks and executed employee payroll cycles via ADP RUN.</li>
+                </ul>
+            </article>
 
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">Einstein's Bagels</span>
+                    <span class="card-date">Oct 2022 – Apr 2023</span>
+                </div>
+                <div class="card-role">Operations Assistant • Portland, OR</div>
+                <ul>
+                    <li>Collaborated with a team to manage high-volume morning rushes, ensuring precision in food production and efficiency in customer service.</li>
+                    <li>Coordinated front-of-house tasks including order fulfillment and cash handling.</li>
+                </ul>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <span class="card-title">The Portland Chart House</span>
+                    <span class="card-date">Aug 2022 – Oct 2022</span>
+                </div>
+                <div class="card-role">Guest Services Host • Portland, OR</div>
+                <ul>
+                    <li>Managed high-volume reservation systems and front-of-house inquiries.</li>
+                    <li>Collaborated with servers and management to optimize seating flow and service efficiency during peak dining hours.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="card-header">
+                    <span class="card-title">Portland State University</span>
+                    <span class="card-date">March 2026 – Present</span>
+                </div>
+                <div class="card-role">Undergraduate Studies in Architecture • Portland, OR</div>
+            </div>
+
+            <div class="education-item">
+                <div class="card-header">
+                    <span class="card-title">Portland Community College</span>
+                    <span class="card-date">Jan 2021 – June 2022</span>
+                </div>
+                <div class="card-role">Undergraduate Studies in Environmental Science • Portland, OR</div>
+            </div>
+
+            <div class="education-item">
+                <div class="card-header">
+                    <span class="card-title">Lincoln High School</span>
+                    <span class="card-date">Sept 2017 – June 2021</span>
+                </div>
+                <div class="card-role">High School Diploma • Portland, OR</div>
             </div>
         </section>
 
@@ -254,22 +314,22 @@
             <ul class="contact-list">
                 <li>
                     <span>Email:</span>
-                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    <a href="mailto:susannaa@pdx.edu">susannaa@pdx.edu</a>
+                </li>
+                <li>
+                    <span>Phone:</span>
+                    <span>(503) 805-2307</span>
                 </li>
                 <li>
                     <span>GitHub:</span>
                     <a href="https://github.com/yourusername" target="_blank" rel="noopener">github.com/yourusername</a>
-                </li>
-                <li>
-                    <span>LinkedIn:</span>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">linkedin.com/in/yourusername</a>
                 </li>
             </ul>
         </section>
     </main>
 
     <footer>
-        <span>&copy; 2026 Your Name</span>
+        <span>&copy; 2026 Susanna Arambula</span>
         <span>Hosted on GitHub Pages</span>
     </footer>
 
